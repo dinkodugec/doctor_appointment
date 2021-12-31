@@ -61,6 +61,29 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
+
+                            <div class="col-md-6">
+                                <select name="gender" class="@error('gender') is-invalid @enderror">
+                                 <option value="">Please select gender</option>
+                                 <option value="male">Male</option>
+                                 <option value="male">Male</option>
+                                </select>
+                            </div>
+                        </div>
+                        @error('gender')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+
+                        @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
