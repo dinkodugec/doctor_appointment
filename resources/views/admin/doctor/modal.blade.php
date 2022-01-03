@@ -9,6 +9,8 @@
       </div>
       <div class="modal-body">
         <p><img src="{{asset('images')}}/{{$user->image}}" width="200" alt=""></p>
+         
+         <p class=""badge badge-pill badge--dark>Role::{{$user->role->name}}</p>
          <p>Name:{{$user->name}}</p>
          <p>Email:{{$user->email}}</p>
          <p>Address:{{$user->address}}</p>
@@ -17,8 +19,8 @@
          <p>Bio:{{$user->description}}</p>
     </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+     
       </div>
     </div>
   </div>
