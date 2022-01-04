@@ -84,7 +84,28 @@ class DoctorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validateUpdate($request, $id);
+        $data=$request->all();
+        $user=User::find($id);
+        $imageName=$user->image;
+        $userPassword=$user->password;
+        if($request-hasFile('image')){
+            $image=$request->file('image');
+            $imageName=$image->hashName();
+            $destination=public_path('/images');
+            $image->move($destination,$imageName);
+        }
+
+        $data['image']=$imageName;
+        
+        if($request->password){
+            $data['password']=bcrypt($request->password);
+        }else{
+            $data['password']=$userPassword;
+        }
+            $user->update($data);
+            return redirect()->route('doctor.index')->with('massage','Doctor updated successfully');
+
     }
 
     /**
@@ -111,6 +132,25 @@ class DoctorController extends Controller
             'department'=>'required',
             'phone_number'=>'required|numeric',
             'image'=>'required|mimes:jpeg,jpg,png',
+            'role_id'=>'required',
+            'description'=>'required',
+           ]);
+
+    }
+
+    public function validateUpdate($request,$id)
+    {
+    
+       return $this->validate($request,[
+            'name'=>'required',
+            'email'=>'required|unique:users,email,' .$id,
+            
+            'gender'=>'required',
+            'education'=>'required',
+            'address'=>'required',
+            'department'=>'required',
+            'phone_number'=>'required|numeric',
+            'image'=>'mimes:jpeg,jpg,png',
             'role_id'=>'required',
             'description'=>'required',
            ]);
