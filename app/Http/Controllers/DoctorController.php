@@ -14,7 +14,8 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $users = User::get();
+        /* dd(\Auth::user()->role->name);   let see name of role who is login */
+        $users = User::where('role_id', '!=', 3)->get();
         return view('admin.doctor.index', compact('users'));
     }
 
