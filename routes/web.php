@@ -30,3 +30,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware'=>['auth','admin']], function(){ /* protect route */
  Route::resource('doctor', 'DoctorController');
 });
+
+Route::resource('appointment', 'AppointmentController');
