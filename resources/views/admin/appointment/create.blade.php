@@ -33,13 +33,16 @@
           Choose Date
       </div>
     <div class="card-body">
-        <input type="data" name="data" class="form-control">
+    <input type="text" class="form-control datetimepicker-input" id="datepicker" data-toggle="datetimepicker" data-target="#datepicker">
     </div>  
    </div>
 
    <div class="card">
       <div class="card-header">
           Choose Am Time
+          <span>
+            <input type="checkbox" onclick=" for(c in document.getElementsByName('time[]')) document.getElementsByName('time[]').item(c).checked=this.checked">
+          </span>
       </div>
     <div class="card-body">
     <table class="table table-striped">
@@ -178,7 +181,24 @@
     </table>
     </div>  
    </div>
+
+   <div class="card">
+     <div class="card-body">
+       <button type="submit" class="btn btn-primary">Submit</button>
+     </div>
+  </div>
+
 </div>
+
+<style type="text/css">
+     input[type="checkbox"]{
+       zoom:1.5;
+     }
+     body{
+      font-size: 20;
+     }
+
+</style>
 
 
 
