@@ -16,7 +16,7 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        //
+      return view('admin.appointment.index');
     }
 
     /**
@@ -99,5 +99,20 @@ class AppointmentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function check(Request $request)
+    {
+        $date = $request->date;
+        $appointment = Appointment::where('date',$date)->where('user_id',auth()->user()->id)->first();
+        if(!$appointment){
+            return redirect()->to('/appointment')->with('errmessage'.
+            'Appointment time not available for this date');
+        }
+        $appointmentId = $appointment->id;
+        $times=Time::where('appointment_id', $appointmentId)->get();
+
+         /* return $times; */
+         return view('admin.appointment.index', compact('times','appointmentId','date'));
     }
 }

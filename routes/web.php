@@ -32,3 +32,4 @@ Route::group(['middleware'=>['auth','admin']], function(){ /* protect route */
 });
 
 Route::resource('appointment', 'AppointmentController');
+Route::post('/appointment/check', 'AppointmentController@check')->name('appointment.check');
