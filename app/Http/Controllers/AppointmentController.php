@@ -37,7 +37,11 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
-
+         $this->validate($request,[
+             'date'=>'required|unique:appointments,date,NULL,id,user_id,
+             '.\Auth::id(),
+             'time'=>'required'
+         ]);
         
          $appointment=Appointment::create([
             'user_id'=>auth()->user()->id,
