@@ -33,6 +33,11 @@
                   {{Session::get('message')}}
               </div>
               @endif
+              @if(Session::has('errmessage'))
+              <div class="alert bg-danger alert-success text-white">
+                  {{Session::get('errmessage')}}
+              </div>
+              @endif
               @foreach($errors->all() as $error)
                  <div class="alert alert-danger"> 
                     {{$error}}
@@ -55,7 +60,8 @@
     </div>  
    </div>
    </form>
-
+      @if(Route::is('appointment.check'))
+      <form action="{{route('update')}}" method="post">@csrf
    <div class="card">
       <div class="card-header">
           Choose Am Time
@@ -63,10 +69,11 @@
             <input type="checkbox" onclick=" for(c in document.getElementsByName('time[]')) document.getElementsByName('time[]').item(c).checked=this.checked">
           </span>
       </div>
+      
     <div class="card-body">
     <table class="table table-striped">
         <thead>
-         
+           <input type="hidden" name="appointmentId" value="{{$appointmentId}}">
             <tr>
             <th scope="row">1</th>
               <td><input type="checkbox" name="time[]"  value="6am" @if(isset($times)){{$times->contains('time','6am')?'checked':''}}@endif >6am</td>
@@ -209,6 +216,8 @@
 
 
 </div>
+</form>
+@endif
 
 <style type="text/css">
      input[type="checkbox"]{
