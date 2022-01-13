@@ -18,6 +18,8 @@ class Admin
     {
         if(Auth::user()->role->name=="admin"){     /*     if auth user is admin */
         return $next($request);
+        }else{
+            return redirect()->back();
         }
     }
 }
