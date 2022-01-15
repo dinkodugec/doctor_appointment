@@ -18,6 +18,8 @@ Route::get('/','FrontendController@index');
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
+Route::get('/new-appointment/{doctorId}/{date}','FrontendController@show')
+->name('create.appointment');
 
 
 
