@@ -10,8 +10,8 @@
            <h2>Create an account & Book your Appointment</h2>
             <p>lorem ipsum...</p>
             <div class="mt-5">
-               <button class="btn btn-success">Register as Patient</button>
-               <button class="btn btn-seconday">Login</button>
+              <a href="{{url('/register')}}"> <button class="btn btn-success">Register as Patient</button></a>
+               <a href="{{url('/login')}}"><button class="btn btn-seconday">Login</button></a> 
             </div>
         </div>
     </div>
@@ -23,7 +23,7 @@
          <div class="card-body">
              <div class="row">
                <div class="col-md-8">
-                 <input type="text" name="date" class="form-control" id="datepicker">  <!-- id=datepicker yquery -->
+                 <input type="text" name="date" class="form-control" id="datepicker">  <!-- id=datepicker jquery -->
                </div>
                <div class="col-md-4">
                    <button class="btn btn-primary" type="submit">Find Doctors</button>
@@ -49,21 +49,25 @@
                    </tr>
                </thead> 
                <tbody>
+                   @forelse($doctors as $doctor)
                    <tr>
                        <th scope="row">1</th>
                        <td>
-                           <img src="/images/dr.jpg" width="100px" style="border-radius:50px">
+                           <img src="{{asset('images')}}/{{$doctor->doctor->image}}" width="100px" style="border-radius:50px">
                        </td>
                        <td>
-                           Name of Doctor
+                       {{$doctor->doctor->name}}
                        </td>
                        <td>
-                           Cardiologist
+                       {{$doctor->doctor->department}}
                        </td>
                        <td>
                            <button class="btn btn-success">Book Appointment</button>
                        </td>
                    </tr>
+                   @empty
+                   <td>No doctors available today </td>
+                   @endforelse
                </tbody>
             </table>
          </div>

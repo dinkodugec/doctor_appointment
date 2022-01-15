@@ -97,6 +97,9 @@
   } );
   </script>
   <style type="text/css">
+      body{
+          background: #fff;
+      }
        .ui-corner-all{
            background: red;
            color: #fff;
