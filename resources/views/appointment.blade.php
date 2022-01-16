@@ -7,16 +7,18 @@
         <div class="card">
           <div class="cars-body">
             <h4 class="text-center">Doctor Information</h4>
-            <img src="/doctor/doctor.png"  width="100px" style="border-radius:50px" >
+            <img src="{{asset('images')}}/{{$user->image}}"  width="100px" style="border-radius:50px" >
              <br>
-            <p> Name:</p>
-            <p>Expertise:</p> 
+            <p class="lead"> Name: {{ucfirst($user->name)}}</p>
+            <p class="lead">Specialist: {{$user->education}}</p> 
+            <p class="lead">Degree: {{$user->department}}</p> 
           </div>
         </div>
       </div>
         <div class="col-md-9">
+          <form action="" method="post">@csrf
             <div class="card">
-                <div class="card-header">{{$date}}</div>
+                <div class="card-header lead">{{$date}}</div>
                    
                 <div class="card-body">
                   <div class="row">
@@ -29,15 +31,12 @@
                     </div>
                       @endforeach
                   </div>
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
                 </div>
             </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-sucess" style="width:100%;">Book Appointment</button>
+            </div>
+            </form>
         </div>
     </div>
 </div>
