@@ -21,6 +21,7 @@ Route::get('/dashboard', function () {
 Route::get('/new-appointment/{doctorId}/{date}','FrontendController@show')
 ->name('create.appointment');
 
+Route::get('/dashboard','DashboardController@index');
 
 
 Auth::routes();
