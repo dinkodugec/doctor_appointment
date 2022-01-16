@@ -92,9 +92,16 @@
     </div>
 
     <script>
+        var dateToday = new Date();
   $( function() {
-    $( "#datepicker" ).datepicker({dateFormat:"yy-mm-dd"}).val();
-  } );
+      $("#datepicker").datepicker({
+        dateFormat:"yy-mm-dd",
+        showButtonPanel:true,
+        numberofMMonths:2,
+        minDate:dateToday,
+
+      });
+     });
   </script>
   <style type="text/css">
       body{

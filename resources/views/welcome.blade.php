@@ -17,6 +17,7 @@
     </div>
     <hr>
    <!--  search doctor -->
+   <form action="{{url('/')}}" method="GET">
     <div class="card">
       <div class="card-body">
          <div class="card-header">Find Doctors</div>
@@ -32,6 +33,7 @@
          </div>
       </div>
     </div>
+    </form>
 
     <!-- display doctors -->
     <div class="card">
