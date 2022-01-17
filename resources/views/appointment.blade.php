@@ -34,7 +34,13 @@
                 </div>
             </div>
             <div class="card-footer">
+              @if(Auth::check())   <!-- if user login -->
                 <button type="submit" class="btn btn-sucess" style="width:100%;">Book Appointment</button>
+                @else
+                <p>Please login to make appointment</p>
+                <a href="/register">Register</a>
+                <a href="/login">Login</a>
+                @endif
             </div>
             </form>
         </div>
