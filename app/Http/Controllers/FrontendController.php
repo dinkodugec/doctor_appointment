@@ -13,9 +13,9 @@ class FrontendController extends Controller
     
     public function index()
     {
-        date_default_timezone_set('Australia/Melbourne'); 
+        
         if(request('date')){
-            $doctors = ($this->findDoctorsBasedOnDate(request('date')));
+            $doctors = $this->findDoctorsBasedOnDate(request('date'));
             return view('welcome',compact('doctors'));
         }
         $doctors=Appointment::where('date',date('Y-m-d'))->get();
@@ -39,8 +39,16 @@ class FrontendController extends Controller
     }
 
     public function store(Request $request)
-    {
+    { 
+        date_default_timezone_set('Australia/Melbourne'); 
+
       $request->validate(['time'=>'required']);
+
+      $check = $this->checkBookingTimeInterval();
+      if($check){
+          return redirect()->back()-with('errmessage','You already made an appointment. Please wait to make next appointment');
+      }
+
       Booking::create([
          'user_id'=>auth()->user()->id,
          'doctor_id'=>$request->doctorId,
@@ -50,9 +58,17 @@ class FrontendController extends Controller
       ]);
 
       Time::where('appointment_id',$request->appointmentId)->
-      where('time',$request->time)->update(['status'=>1]);
-      return redirect()->back()->with('message', 'Yor appointment was booked');
+             where('time',$request->time)->update(['status'=>1]);
+             return redirect()->back()->with('message', 'Yor appointment was booked');
     }
 
+
+    public function checkBookingTimeInterval()
+    {
+        return Booking::orederby('id','desc')
+        ->where('user_id',auth()->user()->id)
+        ->whereDate('created_at',date('Y-m-d'))
+        ->exists();
+    }
 
 }

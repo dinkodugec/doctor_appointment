@@ -24,6 +24,11 @@
                {{Session::get('message')}}
             </div>
           @endif
+          @if(Session::has('errmessage'))
+            <div class="alert alert-danger>
+               {{Session::get('errmessage')}}
+            </div>
+          @endif
           <form action="{{route('booking.appointment')}}" method="post">@csrf
             <div class="card">
                 <div class="card-header lead">{{$date}}</div>
@@ -33,15 +38,13 @@
                       @foreach($times as $time)
                     <div class="col-md-3">
                        <label class="btn btn-outline-primary">
-                         <input type="radio" name="status" name="time" value="{{$time->time}}" >
+                         <input type="radio" name="status" name="time" value="{{$time->time}}">
                          <span>{{$time->time}}</span>
                        </label>
                     </div>
-                    <input type="hidden" name="doctorId" value="{{$doctor_id}}">
-                  
-                    <input type="hidden" name="appointmentId" value="{{$time->appointment_id}}">
-                    <input type="hidden" name="date" value="{{$date}}">
-                    
+                        <input type="hidden" name="doctorId" value="{{$doctor_id}}">
+                        <input type="hidden" name="appointmentId" value="{{$time->appointment_id}}">
+                        <input type="hidden" name="date" value="{{$date}}">
                       @endforeach
                   </div>
                 </div>
@@ -54,9 +57,11 @@
                 <a href="/register">Register</a>
                 <a href="/login">Login</a>
                 @endif
-            </div>
-            </form>
+              
+              </div>
+              </form>
         </div>
+        
     </div>
 </div>
 @endsection

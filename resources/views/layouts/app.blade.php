@@ -104,10 +104,12 @@
      });
   </script>
   <style type="text/css">
-      body{
+     
+     body{
           background: #fff;
       }
-       .ui-corner-all{
+      
+      .ui-corner-all{
            background: red;
            color: #fff;
        }
@@ -115,23 +117,22 @@
           padding: 0;
         }
 
-label.btn input {
-  opacity: 0;
-  position: absolute;
+       label.btn input {
+       opacity: 0;
+       position: absolute;
+        }
 
-}
+       label.btn span {
+       text-align: center;
+       padding: 6px 12px;
+       display: block;
+        min-width: 80px;
+        }
 
-label.btn span {
-  text-align: center;
-  padding: 6px 12px;
-  display: block;
-  min-width: 80px;
-}
-
-label.btn input:checked+span {
-  background-color: rgb(80, 110, 228);
-  color: #fff;
-}
+        label.btn input:checked+span {
+        background-color: rgb(80, 110, 228);
+        color: #fff;
+        }
   </style>
 
 </body>
