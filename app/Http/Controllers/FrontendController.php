@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Appointment;
 use App\Time;
 use App\User;
+use App\Booking;
 
 class FrontendController extends Controller
 {
@@ -37,6 +38,21 @@ class FrontendController extends Controller
         return $doctors;
     }
 
+    public function store(Request $request)
+    {
+      $request->validate(['time'=>'required']);
+      Booking::create([
+         'user_id'=>auth()->user()->id,
+         'doctor_id'=>$request->doctorId,
+         'time'=>$request->time,
+         'date'=>$request->date,
+         'status'=>0
+      ]);
+
+      Time::where('appointment_id',$request->appointmentId)->
+      where('time',$request->time)->update(['status'=>1]);
+      return redirect()->back()->with('message', 'Yor appointment was booked');
+    }
 
 
 }
