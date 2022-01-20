@@ -23,6 +23,8 @@ Route::get('/new-appointment/{doctorId}/{date}','FrontendController@show')
 
 Route::post('/book/appointment', 'FrontendController@store')->name('booking.appointment')->middleware('auth');
 
+Route::post('/my-booking', 'FrontendController@myBookings')->name('my.booking')->middleware('auth');
+
 Route::get('/dashboard','DashboardController@index');
 
 

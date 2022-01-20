@@ -86,4 +86,11 @@ class FrontendController extends Controller
         ->exists();
     }
 
+    public function myBookings()
+    {
+       $appointments = Booking::latest()->where('user_id',auth()->user()->id)
+       ->get();
+       return view('booking.index', compact('appointments'));
+    }
+
 }
