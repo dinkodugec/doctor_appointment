@@ -13,9 +13,21 @@ class ProfileController extends Controller
       return view('profile.index');
     }
 
-    public function store()
+    public function store(Request $request)
     {
-
+       $this->validate($request,[
+           'name'=>'required',
+           'gender'=>'required'
+       ]);
+       User::where('id',auth()->user()->id)
+       ->update([
+           'name'=>$request->name,
+           'phone_number'=>$request->phone_number,
+           'description'=>$request->description,
+           'gender'=>$request->gender,
+           'address'=>$request->address
+        ]);
+        return redirect()->back()->with('message','profile updated');
     }
 
 
