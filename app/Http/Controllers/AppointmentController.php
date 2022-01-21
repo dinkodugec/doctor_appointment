@@ -38,7 +38,7 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
-         $this->validate($request,[
+         $this->validate($request,[    /* validation https://laravel.com/docs/5.2/validation */
              'date'=>'required|unique:appointments,date,NULL,id,user_id,
              '.\Auth::id(),
              'time'=>'required'

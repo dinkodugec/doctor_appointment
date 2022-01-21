@@ -27,6 +27,9 @@ Route::post('/my-booking', 'FrontendController@myBookings')->name('my.booking')-
 
 Route::get('/dashboard','DashboardController@index');
 
+Route::get('/profile','ProfileController@index');
+Route::post('/profile','ProfileController@store');
+
 
 Auth::routes();
 
