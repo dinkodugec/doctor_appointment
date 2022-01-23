@@ -61,7 +61,7 @@
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                                  @enderror
                            <div class="form-group">
                             <label>Bio</label>
                              <textarea name="description" class="form-control">{{auth()->user()->description}}</textarea>
@@ -81,15 +81,22 @@
 
         <div class="col-md-3">
             <div class="card">
-                <div class="card-header">{{ __('Update Image') }}</div>
+                <div class="card-header">Update Image</div>
+                    <form action="{{route('profile.pic')}}" method="post" enctype="multipart/form-data">@csrf
 
                 <div class="card-body">
+                    @if(!auth()->user()->image)
                    <img src="/images/dr.jpg" width="120">
+                   @else
+                   <img src="/profile/{{auth()->user()->image}}" width="120">
+                   @endif
                    <br>
-                   <input type="file" name="image" class="form-control">
+                   <input type="file" name="file" class="form-control" required="">
                    <br>
+                      
                    <button type="submit" class="btn btn-primary">Update</button>
                 </div>
+                </form>
             </div>
         </div>
 
