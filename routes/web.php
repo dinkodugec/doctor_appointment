@@ -47,6 +47,7 @@ Route::get('/home', 'HomeController@index')->name('home');
     Route::group(['middleware'=>['auth','admin']], function(){ /* protect route */
       Route::resource('doctor', 'DoctorController');
       Route::get('patients', 'PatientlistController@index')->name('patient');
+      Route::get('status/update/{id}', 'PatientlistController@toggleStatus')->name('update.status');
     });
 
 Route::group(['middleware'=>['auth','doctor']], function(){
